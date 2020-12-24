@@ -1,0 +1,167 @@
+"///////////////////////////////////////////
+"                                          /
+"                                          /
+"                                          /
+"              GDRIVE                      /
+"                   VIMRC                  /
+"                                          /
+"                                          /
+"                                          /
+"                                          /
+"///////////////////////////////////////////
+
+
+
+
+"Макрос рефакторинга переменной.
+"Курсор на переменную: gr<new_name><ENTER>
+
+"Для обычной переменной.
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+
+"Для глобальной.
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+"//////////////////////////////////////////
+
+
+"Включнеие подцветки синтаксиса
+syntax enable
+"Установка цвета заднего фона
+set background=dark
+"Настройка плагина на цветные скобки ()
+"let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
+"/////////////////////
+"
+"Установка color-cheme
+"colorscheme molokai
+
+"Хорошие flazz-color-схемы:
+"OceanicNext
+"Mustang
+"apprentice
+"gruvbox
+"1989
+"256-jungle
+
+"/////////////////////////
+
+set autoindent "Автоотступы
+set t_Co=256 "Включить 256 цветов
+set mousehide "Прятать курсор мыши при вводе
+set mouse=a "Включить мышь
+set termencoding=utf8 "Кодировка терминала
+set wrap "Включить перенос на другую строку
+"Убираем резервные файлы
+set nobackup
+set noswapfile
+
+set encoding=utf8 "Кодировка файлов по умолчанию
+set encoding=UTF-8
+set ruler "Счетчик строк и символов в углу
+set visualbell t_vb= "Выключаем звук
+set number "Включить нумерацию строк слева
+
+
+"Авто скобки
+imap {<CR> {<CR>}<ESC>O
+"imap ( ()<ESC>i
+"imap '<CR> ''<ESC>i
+"imap [ []<ESC>i
+
+"Авто пробелы
+imap , , 
+
+"Удобная постановка ; из скобок
+imap <C-l> <ESC>$a;<ESC>
+
+"Разметка табов, линих пробелов итд.
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<
+set list
+
+
+
+"Клавиши для плагина дерева каталогов:
+"
+""Вызов дерева
+"map <C-m> :NERDTreeToggle<CR>
+
+"/////////////////////////////////////
+
+" Удоьные HotKeys для плагина FZF
+"let g:fzf_action = {
+"  \ 'ctrl-t': 'tab split', 
+"  \ 'ctrl-x': 'split', 
+"  \ 'ctrl-v': 'vsplit' }
+
+"/////////////////////////////////////
+
+
+" Настройки для Vundle (менеджер плагинов)
+
+"set nocompatible              " be iMproved, required
+"filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+
+" let Vundle manage Vundle, required
+"Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+"Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+"Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+
+
+" Мои стороннии плагины
+
+
+" Большой набор цветовых схемы
+"Plugin 'flazz/vim-colorschemes' 
+"Plugin 'rafi/awesome-vim-colorschemes' 
+
+" Дерево каталогов
+"Plugin 'preservim/nerdtree' 
+
+
+" Цветные парные скобки ()
+"Plugin 'luochen1990/rainbow'
+
+
+" Поиск фвйлов по команде :FZF
+"Plugin 'junegunn/fzf' 
+
+
+" ///////////////////////////////////////////////////////////
+
+" All of your Plugins must be added before the following line
+"call vundle#end()            " required
+"filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+" //////////////////////////////////////////////////////////////////////////////////////////
