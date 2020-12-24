@@ -1,0 +1,46 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                              Claster Management                                ~
+~                                                                                ~
+~                       minikube start #launch minikube                          ~
+~                       minikube stop  #stop minikube                            ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Starting cluster;
+
+    minicube start
+
+# Creating and configuration VM (virtual machine),
+  wich will launch single-node cluster.
+
+- For working with Docker:
+
+    minikube docker-env
+
+# Now you can use Docker in command line.
+
+- Configuration for Kubernetes:
+
+   minikube start --extra-config=component.key=value
+
+# component - kubelet, apiserver, proxy, controller-manager, etcd of scheduler.
+  key - key from config-struct.
+  Example: --extra-config=kubelet.MaxPods=5
+
+- Stopping cluster:
+
+   minikube stop
+
+# Stop the cluster with saving data.
+
+- Delete cluster:
+
+   minikube delete <name>
+
+# Delete cluster with data.
+

@@ -1,0 +1,18 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                                  Dashboard                                     ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+
+# Deploy dashboard.
+# [-f FILENAME] - for define file name.
+# [apply] - for applying.
+# recomended.yaml - base config.
+

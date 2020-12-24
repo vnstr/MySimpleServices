@@ -1,0 +1,39 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                                 Minicube                                       ~
+~                                                                                ~
+~                       minikube start #launch minikube                          ~
+~                       minikube stop  #stop minikube                            ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-Creating Deployment in Kubernetes:
+
+    kubectl create deployment hello-minikube --image=k8s.gcr.io/echoserver:1.10
+
+- Exposing ports:
+
+   kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+#option '--type=NodePort' defines the type of service
+
+- Checking pods:
+
+   kubectl get pod
+
+- Get URL of service:
+
+   minikube service hello-minikube --url
+
+- Delete the service:
+
+   kubectl delete services hello-minikube
+
+- Delete the deployment:
+
+   minikubectl delete deployment hello-minikube
+

@@ -1,0 +1,22 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                             Work with cluster                                  ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Command 'minikube start' create context kubectl with name 'minikube'.
+    Context includes configuration for working with cluster Minikube.
+    Its automatically,
+    but command 'kubectl config use-context minikube' does for sure.
+    Or use 'kubectl <anyCommand> --contex=minikube'.
+
+- Services:
+
+    minikube service [-n NAMESPACE] [--url] NAME
+
+# Get URL of setvice.
+
