@@ -1,0 +1,83 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                               Supervisord                                      ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~                                                                                ~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-c FILE, --configuration=FILE
+ 	The path to a supervisord configuration file.
+
+-n, --nodaemon	Run supervisord in the foreground.
+
+-s, --silent	No output directed to stdout.
+
+-h, --help	Show supervisord command help.
+
+-u USER, --user=USER
+ 	UNIX username or numeric user id. If supervisord is started as the root user,
+	setuid to this user as soon as possible during startup.
+
+-m OCTAL, --umask=OCTAL
+ 	Octal number (e.g. 022) representing the umask that should be used
+	by supervisord after it starts.
+
+-d PATH, --directory=PATH
+ 	When supervisord is run as a daemon, cd to this directory before daemonizing.
+
+-l FILE, --logfile=FILE
+ 	Filename path to use as the supervisord activity log.
+
+-y BYTES, --logfile_maxbytes=BYTES
+ 	Max size of the supervisord activity log file before a rotation occurs.
+	The value is suffix-multiplied, e.g “1” is one byte, “1MB” is 1 megabyte,
+	“1GB” is 1 gigabyte.
+
+-z NUM, --logfile_backups=NUM
+ 	Number of backup copies of the supervisord activity log to keep around.
+	Each logfile will be of size logfile_maxbytes.
+
+-e LEVEL, --loglevel=LEVEL
+ 	The logging level at which supervisor should write to the activity log.
+	Valid levels are trace, debug, info, warn, error, and critical.
+
+-j FILE, --pidfile=FILE
+ 	The filename to which supervisord should write its pid file.
+
+-i STRING, --identifier=STRING
+ 	Arbitrary string identifier exposed by various client UIs for
+	this instance of supervisor.
+
+-q PATH, --childlogdir=PATH
+ 	A path to a directory (it must already exist) where supervisor will
+	write its AUTO -mode child process logs.
+
+-k, --nocleanup
+ 	Prevent supervisord from performing cleanup
+	(removal of old AUTO process log files) at startup.
+
+-a NUM, --minfds=NUM
+ 	The minimum number of file descriptors that must be available to the
+	supervisord process before it will start successfully.
+
+-t, --strip_ansi
+ 	Strip ANSI escape sequences from all child log process.
+
+-v, --version	Print the supervisord version number out to stdout and exit.
+
+--profile_options=LIST
+ 	Comma-separated options list for profiling. Causes supervisord to run under
+	a profiler, and output results based on the options,
+	which is a comma-separated list of the following:
+	cumulative, calls, callers. E.g. cumulative,callers.
+
+--minprocs=NUM
+	The minimum number of OS process slots that must be available
+	to the supervisord process before it will start successfully.
+

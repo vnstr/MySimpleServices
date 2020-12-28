@@ -2,11 +2,13 @@ FROM alpine
 
 # Installing required packages.
 
-RUN	apk add\
+RUN	apk update &&\
+	apk add\
 	vim\
+	supervisor\
 	nginx\
-	openssl |\
-	mkdir -p /etc/vim |\
+	openssl &&\
+	mkdir -p /etc/vim &&\
 	mkdir -p /run/nginx
 
 COPY ./vimrc /etc/vim/
@@ -38,16 +40,24 @@ RUN mkdir -p /home/www/.ssl;\
 
 #------------------------------
 
-# Setup ft_services.conf for nginx
+# Setup ftServicesNginx.conf for nginx
 
-COPY ./src/ftServices.conf /etc/nginx/conf.d
+COPY ./src/ftServicesNginx.conf /etc/nginx/conf.d
 
-COPY src/setupNginxFtServices.sh /
-RUN /setupNginxFtServices.sh | rm setupNginxFtServices.sh
+COPY src/setupFtServicesNginxConf.sh /
+RUN /setupFtServicesNginxConf.sh && rm setupFtServicesNginxConf.sh
+
+#------------------------------
+
+# Setup ftServicesSupervisord.conf for supervisord
+
+COPY ./src/ftServicesSupervisord.conf /etc/
 
 #------------------------------
 
 COPY ./src/startNginxAlpine.sh /
+
+COPY ./src/startSupervisord.sh /
 
 EXPOSE 80 443
 
