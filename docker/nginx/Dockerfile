@@ -15,19 +15,10 @@ COPY ./vimrc /etc/vim/
 
 #-----------------------------
 
-# Creating user and generate ssh.
+#Generate ssl.
 
-# RUN adduser -g 'Nginx www user' -h /home/www/ wwwgdrive
-
-RUN adduser\
-	-g 'Nginx-ft_services www user'\
-	-h /home/www/\
-	-s SHELL\
-	-D\
-	wwwft_services
-
-RUN mkdir -p /home/www/.ssl;\
-	mkdir -p /home/www/.ssh;\
+RUN mkdir -p /etc/nginx/.ssh;\
+	mkdir -p /etc/nginx/.ssl;\
 	openssl req\
 	-x509\
 	-nodes\
@@ -35,12 +26,11 @@ RUN mkdir -p /home/www/.ssl;\
 	-subj "/C=RU/ST=Moscow/O=Ft_servicesCompany, Inc./CN=ft_services.com"\
 	-addext "subjectAltName=DNS:gdrive.com"\
 	-newkey rsa:2048\
-	-keyout /home/www/.ssh/ft_services.key\
-	-out /home/www/.ssl/ft_services.crt;
-
+	-keyout /etc/nginx/.ssh/ft_services.key\
+	-out /etc/nginx/.ssl/ft_services.crt;
 #------------------------------
 
-# Setup ftServicesNginx.conf for nginx
+# Setup ftServicesNginx.conf for nginx.
 
 COPY ./src/ftServicesNginx.conf /etc/nginx/conf.d
 
@@ -49,11 +39,13 @@ RUN /setupFtServicesNginxConf.sh && rm setupFtServicesNginxConf.sh
 
 #------------------------------
 
-# Setup ftServicesSupervisord.conf for supervisord
+# Setup ftServicesSupervisord.conf for supervisord.
 
 COPY ./src/ftServicesSupervisord.conf /etc/
 
 #------------------------------
+
+# Scripts for starting.
 
 COPY ./src/startNginxAlpine.sh /
 
@@ -61,7 +53,5 @@ COPY ./src/startSupervisord.sh /
 
 EXPOSE 80 443
 
-#USER wwwft_services
-
-#CMD nginx -g 'daemon off;'
+CMD /startSupervisord.sh
 
