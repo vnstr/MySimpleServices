@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker run -it -p 80:80 -p 443:443 wordpress-nginx:v1
+docker run -d -p 5050:5050 wordpress-nginx:v1
