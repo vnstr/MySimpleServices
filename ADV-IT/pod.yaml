@@ -1,0 +1,22 @@
+# Manadatiry #
+apiVersion : v1
+
+# What is it? #
+kind: Pod
+
+# Data #
+metadata:
+    name: nginx
+    labels:
+        env  : ft_services
+        app  : nginx
+        owner: gdrive
+
+# What will it do ? #
+spec:
+    # Launch containers #
+    containers:
+        - name : main-nginx
+          image: main-nginx:v1
+          ports:
+              - containerPort: 443

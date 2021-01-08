@@ -1,0 +1,35 @@
+
+
+# Pod #
+
+kubectl get pods
+#show running pods
+
+kubectl run <name_of_pod> 
+params:
+	--image = <path_to_image>
+	--port=<number>
+
+kubectl delete pods <name_of_pod>
+#delete pod
+
+kubectl describe pod <name_of_pod>
+#show extended info about pod
+
+kubectl exec <name_of_pod> -- <command>
+#execute the command on pod
+params:
+	exec [-it] - iteractive mod
+
+kubectl logs <name_of_pod>
+#show logs of pod
+
+kubectl port-forward <name_of_pod> <port>:<port>
+#redirect port from local to pod
+
+kubectl apply -f <path_to_yaml>
+#create pod from yaml
+params:
+	[-f] - for path to yaml
+
+# --- #

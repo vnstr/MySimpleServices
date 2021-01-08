@@ -1,0 +1,26 @@
+
+
+# Main Objects #
+
+1. Pod
+#include:
+	containers
+
+2. Deployment
+#include:
+	set of identical pods
+
+3. Service
+#provides access to the deployment by:
+	ClusterIP - iternal address
+	NodePort - port for access will be open on all servers
+	LoadBalancer
+	ExternalName
+
+4. Nodes
+#our servers
+
+5. Cluster
+#all this
+
+# ------------ #

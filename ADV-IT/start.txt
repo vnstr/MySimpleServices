@@ -1,0 +1,29 @@
+
+
+# START #
+
+minikube start
+#create virtual machine
+#and deploy our cluster
+params:
+	-p <name_of_cluster>
+	--cpus=<number_CPU>
+	--memory=<number><gb/mb>
+	--disk-size=<number><gb/mb>
+
+minikube ssh
+#login to virtual machine
+
+minikube stop
+#stop virtual machine
+
+minikube delete
+#delete virtual machine
+
+kubectl get nodes
+#get info about running nodes
+
+kubectl label node <name_of_node> node-role.kubernetes.io/<label>
+#rename node label
+
+# ----- #
