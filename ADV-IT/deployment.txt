@@ -1,0 +1,42 @@
+
+
+# Deployment #
+
+kubectl create deployment <name_of_deployment>
+#params:
+	[--image] <path_to_image>
+
+kubectl describe deployment <name_of_deployment>
+#show extended info
+
+kubectl scale deployment <name_of_deployment> --replicas=<number>
+#scaling pods
+
+kubectl get rs
+#show replicas-set
+
+kubectl autoscale deployment <name_of_deployment> --min=4 --max=6 --cpu-percent=80
+#auto scaling on cpu 80%
+
+kubectl get hpa
+#show horizont pods auto scaling
+
+kubectl rollout history deployments/<name_of_deployment>
+#show history of deployment
+
+kubectl rollout status deployments/<name_of_deployment>
+#show status of deployment
+
+kubectl set image deployment/<name_of_deployment> <name_of_container>=<path_to_image> --record=true
+#update container-image
+
+kubectl rollout undo deployment/<name_of_deployment>
+#reset to previous version
+
+kubectl undo deployment/<name_of_deployment> --to-revision=<number>
+#reset to chosen version
+
+kubectl restart deployment/<name_of_deployment>
+#restart deployment
+
+# ---------- #

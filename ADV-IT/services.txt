@@ -1,0 +1,19 @@
+
+
+# Services #
+
+Types:
+	ClusterIP - default type. Access to app in IP inside cluster only.
+	NodePort - gives port on all Worker Nodes for access to app.
+	ExternalName - DNS.
+	LoadBalancer - only Cloud Clusterts.
+
+kubectl expose deployment <name_of_deployment> --type=ClusterIP --port 80
+#create service for deployment with open port 80
+
+kubectl get services
+#show running services
+
+kubectl delete service <name_of_deployment>
+
+# -------- #

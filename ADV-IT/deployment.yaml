@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name : nginx-d
+    labels:
+        app: nginx
+spec:
+    # replicas: <number>
+    # Whats pods to choose? #
+    selector:
+        # With labels: #
+        matchLabels:
+            project: main-nginx
+    # Creating pods #
+    template:
+        metadata:
+            labels:
+                project: main-nginx
+        spec:
+            containers:
+                - name : main-nginx
+                  image: main-nginx:v1
+                  ports:
+                      - containerPort: 80
+                      - containerPort: 443
