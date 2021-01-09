@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name  : nginx-deployment
+    labels:
+        env   : ft_services
+        app   : nginx
+        owner : gdrive
+spec:
+    replicas : 1
+    selector :
+        matchLabels:
+            project: main-nginx
+    template:
+        metadata:
+            labels:
+                env     : ft_services
+                app     : nginx
+                project : main-nginx
+                owner   : gdrive
+        spec:
+            containers:
+                - name            : nginx
+                  image           : main-nginx:v1
+                  imagePullPolicy : Never
+                  ports:
+                      - containerPort : 80
+                      - containerPort : 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name  : nginx-service
+    labels:
+        env: ft_services
+        app: nginx
+        owner : gdrive
+spec:
+    type    : LoadBalancer
+    selector:
+        project: main-nginx
+    ports:
+        - name       : http
+          protocol   : TCP
+          port       : 80
+          targetPort : 80
+        - name       : https
+          protocol   : TCP
+          port       : 443
+          targetPort : 443

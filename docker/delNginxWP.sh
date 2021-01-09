@@ -3,3 +3,5 @@
 ./nginx/deleteImage.sh
 
 ./wordpress/deleteImage.sh
+
+docker images

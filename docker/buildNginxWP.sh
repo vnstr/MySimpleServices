@@ -4,4 +4,3 @@
 		./wordpress/buildWordpressNginx.sh
 
 docker images
-

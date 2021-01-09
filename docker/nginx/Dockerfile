@@ -32,22 +32,20 @@ RUN mkdir -p /etc/nginx/.ssh;\
 
 # Setup ftServicesNginx.conf for nginx.
 
-COPY ./src/ftServicesNginx.conf /etc/nginx/conf.d
+COPY ./src/nginx.conf /etc/nginx/conf.d
 
-COPY src/setupFtServicesNginxConf.sh /
-RUN /setupFtServicesNginxConf.sh && rm setupFtServicesNginxConf.sh
+COPY src/setupNginxConf.sh /
+RUN /setupNginxConf.sh && rm setupNginxConf.sh
 
 #------------------------------
 
 # Setup ftServicesSupervisord.conf for supervisord.
 
-COPY ./src/ftServicesSupervisord.conf /etc/
+COPY ./src/supervisord.conf /etc/
 
 #------------------------------
 
-# Scripts for starting.
-
-COPY ./src/startNginxAlpine.sh /
+# Script for starting.
 
 COPY ./src/startSupervisord.sh /
 
