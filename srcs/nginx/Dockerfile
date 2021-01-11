@@ -11,7 +11,7 @@ RUN	apk update &&\
 	mkdir -p /etc/vim &&\
 	mkdir -p /run/nginx
 
-COPY ./vimrc /etc/vim/
+COPY ./src/vimrc /etc/vim/
 
 #-----------------------------
 
@@ -30,7 +30,7 @@ RUN mkdir -p /etc/nginx/.ssh;\
 	-out /etc/nginx/.ssl/ft_services.crt;
 #------------------------------
 
-# Setup ftServicesNginx.conf for nginx.
+# Setup nginx.conf for nginx.
 
 COPY ./src/nginx.conf /etc/nginx/conf.d
 
@@ -39,7 +39,7 @@ RUN /setupNginxConf.sh && rm setupNginxConf.sh
 
 #------------------------------
 
-# Setup ftServicesSupervisord.conf for supervisord.
+# Setup supervisord.conf for supervisord.
 
 COPY ./src/supervisord.conf /etc/
 
@@ -49,7 +49,16 @@ COPY ./src/supervisord.conf /etc/
 
 COPY ./src/startSupervisord.sh /
 
+#------------------------------
+
+# Open ports
+
 EXPOSE 80 443
+
+#------------------------------
+
+# Final command
 
 CMD /startSupervisord.sh
 
+#------------------------------
