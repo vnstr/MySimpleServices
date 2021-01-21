@@ -1,6 +1,8 @@
-FROM alpine
+FROM alpine:3.12.3
 
 # Installing required packages.
+
+#RUN echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories
 
 RUN	apk update &&\
 	apk add\
