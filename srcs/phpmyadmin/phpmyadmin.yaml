@@ -3,20 +3,22 @@ kind: Deployment
 metadata:
   name: phpmyadmin-deployment
   labels:
-    app: phpmyadmin-deployment
+    app  : phpmyadmin
+    env  : ft_services
+    owner: gdrive
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: phpmyadmin
+      project: phpmyadmin
   template:
     metadata:
       labels:
-        app: phpmyadmin
+        project: phpmyadmin
     spec:
       containers:
-      - name: phpmyadmin
-        image: phpmyadmin:v1
+      - name           : phpmyadmin
+        image          : phpmyadmin:v1
         imagePullPolicy: Never
         ports:
         - containerPort: 5000
@@ -27,11 +29,15 @@ metadata:
   name: phmyadmin-service
   annotations:
     metallb.universe.tf/allow-shared-ip: services
+  labels:
+    app  : phpmyadmin
+    env  : ft_services
+    owner: gdrive
 spec:
   type: LoadBalancer
   selector:
-    app: phpmyadmin
+    project: phpmyadmin
   ports:
-  - port: 5000
+  - name      : http
+    port      : 5000
     targetPort: 5000
-    name: http
