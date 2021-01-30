@@ -1,8 +1,5 @@
 FROM alpine:3.12.3
 
-#RUN apk update
-#RUN apk add nginx supervisor php7 php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session php7-fpm libc6-compat
-
 # Installing required packages.
 
 RUN	apk update &&\
@@ -46,19 +43,15 @@ COPY src/wp-config.php /www/
 
 #------------------------------
 
-#RUN wget http://wordpress.org/latest.tar.gz
-#RUN mkdir /www
-#RUN tar -xf latest.tar.gz --strip-components=1 -C /www
-#RUN rm latest.tar.gz
+# Setup supervisord.conf for supervisord.
 
-#COPY src/wp-config.php /www/
-#COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY supervisord.conf /etc/
+COPY ./src/supervisord.conf /etc/
+COPY src/startSupervisord.sh /
+
+#------------------------------
+
 #COPY telegraf.conf /etc/telegraf/
-
-COPY start.sh .
-RUN chmod +x start.sh
 
 EXPOSE 5050
 
-CMD sh start.sh
+CMD /startSupervisord.sh
