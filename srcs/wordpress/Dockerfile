@@ -1,5 +1,8 @@
 FROM alpine:3.12.3
 
+#RUN apk update
+#RUN apk add nginx supervisor php7 php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session php7-fpm libc6-compat
+
 # Installing required packages.
 
 RUN	apk update &&\
@@ -18,9 +21,11 @@ RUN	apk update &&\
 	mkdir -p /etc/vim &&\
 	mkdir -p /run/nginx
 
-COPY ./src/vimrc /etc/vim/
-
 #-----------------------------
+
+#RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.17.0_linux_amd64.tar.gz
+#RUN tar -xf telegraf-1.17.0_linux_amd64.tar.gz --strip-components=2 -C /
+#RUN rm telegraf-1.17.0_linux_amd64.tar.gz
 
 # Setup nginx.conf for nginx.
 
@@ -34,31 +39,26 @@ RUN /setupNginxConf.sh && rm setupNginxConf.sh
 # Setup Wordpress.
 
 RUN wget http://wordpress.org/latest.tar.gz &&\
-	tar -xf latest.tar.gz -C /var/www/ &&\
+	mkdir /www &&\
+	tar -xf latest.tar.gz --strip-components=1 -C /www &&\
 	rm latest.tar.gz
-COPY src/wp-config.php /var/www/wordpress/
-#------------------------------
-
-# Setup supervisord.conf for supervisord.
-
-COPY ./src/supervisord.conf /etc/
+COPY src/wp-config.php /www/
 
 #------------------------------
 
-# Script for starting.
+#RUN wget http://wordpress.org/latest.tar.gz
+#RUN mkdir /www
+#RUN tar -xf latest.tar.gz --strip-components=1 -C /www
+#RUN rm latest.tar.gz
 
-COPY ./src/startSupervisord.sh /
+#COPY src/wp-config.php /www/
+#COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY supervisord.conf /etc/
+#COPY telegraf.conf /etc/telegraf/
 
-#------------------------------
-
-# Open ports
+COPY start.sh .
+RUN chmod +x start.sh
 
 EXPOSE 5050
 
-#------------------------------
-
-# Final command
-
-CMD /startSupervisord.sh
-
-#------------------------------
+CMD sh start.sh
