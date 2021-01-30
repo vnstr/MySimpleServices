@@ -22,10 +22,10 @@
 define('DB_NAME', 'wordpress');
 
 /** MySQL database username */
-define('DB_USER', 'mgeneviv');
+define('DB_USER', 'gdrive');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'password');
+define('DB_PASSWORD', 'pass');
 
 /** MySQL hostname */
 define('DB_HOST', 'mysql-service:3306');

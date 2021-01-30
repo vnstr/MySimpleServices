@@ -1,22 +1,24 @@
 apiVersion: apps/v1
-kind: Deployment
+kind      : Deployment
 metadata:
   name: wordpress-deployment
   labels:
-    app: wordpress-deployment
+    env  : ft_services
+    app  : wordpress
+    owner: gdrive
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      project: wordpress
   template:
     metadata:
       labels:
-        app: wordpress
+        project: wordpress
     spec:
       containers:
-      - name: wordpress
-        image: wordpress-nginx:v1
+      - name           : wordpress
+        image          : wordpress-nginx:v1
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
@@ -27,12 +29,16 @@ metadata:
   name: wordpress-service
   annotations:
     metallb.universe.tf/allow-shared-ip: services
+  labels:
+      env  : ft_services
+      app  : wordpress
+      owner: gdrive
 spec:
   type: LoadBalancer
   selector:
-    app: wordpress
+    project: wordpress
   ports:
-  - port: 5050
-    protocol: TCP
-    targetPort: 5050
-    name: http
+    - name      : http
+      protocol  : TCP
+      port      : 5050
+      targetPort: 5050

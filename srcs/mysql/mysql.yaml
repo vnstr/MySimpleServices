@@ -2,12 +2,16 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: mysql-pvc
+  labels:
+      env  : ft_service
+      app  : mysql
+      owner: gdrive
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 500Mi
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -15,40 +19,46 @@ metadata:
   name: mysql-deployment
   labels:
     app: mysql-deployment
+    env  : ft_service
+    owner: gdrive
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mysql
+      project: mysql
   template:
     metadata:
       labels:
-        app: mysql
+        project: mysql
     spec:
       volumes:
       - name: mysql-volume
         persistentVolumeClaim:
           claimName: mysql-pvc
       containers:
-      - name: mysql
-        image: mysql:v1
+      - name           : mysql
+        image          : mysql:v1
         imagePullPolicy: Never
-        ports:
+        ports          :
         - containerPort: 3306
-        volumeMounts:
+        volumeMounts   :
         - mountPath: "/var/lib/mysql"
-          name: mysql-volume
+          name     : mysql-volume
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: mysql-service
+  labels:
+      env  : ft_service
+      app  : mysql
+      owner: gdrive
 spec:
   type: ClusterIP
   selector:
-    app: mysql
+    project: mysql
   ports:
-  - port: 3306
-    name: http
+  - name      : http
+    port      : 3306
     targetPort: 3306
 
