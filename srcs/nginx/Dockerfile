@@ -4,10 +4,11 @@ FROM alpine:3.12.3
 
 RUN	apk update &&\
 	apk add\
-	vim\
 	supervisor\
 	nginx\
-	openssl &&\
+	openssl\
+	openssh\
+	libc6-compat &&\
 	mkdir -p /run/nginx
 
 #-----------------------------
@@ -25,6 +26,14 @@ RUN mkdir -p /etc/nginx/.ssh;\
 	-newkey rsa:2048\
 	-keyout /etc/nginx/.ssh/ft_services.key\
 	-out /etc/nginx/.ssl/ft_services.crt;
+#------------------------------
+
+# Creating ssh-key and user
+
+RUN ssh-keygen -A
+RUN adduser -D -g 'gdrive' gdrive
+RUN echo "gdrive:pass" | chpasswd
+
 #------------------------------
 
 # Setup nginx.conf for nginx.
@@ -54,7 +63,7 @@ COPY ./src/startSupervisord.sh /
 
 # Open ports
 
-EXPOSE 80 443
+EXPOSE 80 443 22
 
 #------------------------------
 

@@ -4,7 +4,6 @@ FROM alpine:3.12.3
 
 RUN	apk update &&\
 	apk add\
-	vim\
 	supervisor\
 	nginx\
 	php7 \
@@ -14,8 +13,8 @@ RUN	apk update &&\
 	php7-mbstring \
 	php7-json \
 	php7-session \
-	php7-fpm &&\
-	mkdir -p /etc/vim &&\
+	php7-fpm\
+	libc6-compat &&\
 	mkdir -p /run/nginx
 
 #-----------------------------

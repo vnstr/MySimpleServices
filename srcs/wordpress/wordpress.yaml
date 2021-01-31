@@ -1,44 +1,66 @@
+# Mandatory #
 apiVersion: apps/v1
+
+# What type? #
 kind      : Deployment
 metadata:
   name: wordpress-deployment
+  # Additional information #
   labels:
-    env  : ft_services
     app  : wordpress
+    env  : ft_services
     owner: gdrive
 spec:
+  # How many replicas? #
   replicas: 1
+  # Whats pods to choose? #
   selector:
+    # Choose with labels: #
     matchLabels:
-      project: wordpress
+      project: wordpress-nginx
+  # Creating pods #
   template:
     metadata:
       labels:
-        project: wordpress
+        project: wordpress-nginx
+    # Configs for containers #
     spec:
       containers:
       - name           : wordpress
+        # Image to be used #
         image          : wordpress-nginx:v1
+        # Turn of DockerHub #
         imagePullPolicy: Never
+        # Open ports #
         ports:
         - containerPort: 5050
 ---
+# Mandatory #
 apiVersion: v1
+
+# What type? #
 kind: Service
 metadata:
   name: wordpress-service
+  # Because everyone works on the same IP #
   annotations:
     metallb.universe.tf/allow-shared-ip: services
+   # Additional information #
   labels:
-      env  : ft_services
       app  : wordpress
+      env  : ft_services
       owner: gdrive
 spec:
+  # Include LoadBalancer #
   type: LoadBalancer
+  # Whats pods to choose? #
   selector:
-    project: wordpress
+    # Choose with labels: #
+    project: wordpress-nginx
   ports:
     - name      : http
       protocol  : TCP
+      # Redirect ports from #
       port      : 5050
+      # Redirect port to #
       targetPort: 5050

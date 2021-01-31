@@ -30,6 +30,14 @@ COPY src/startSupervisord.sh /
 #COPY start.sh .
 #RUN chmod +x start.sh
 
+# Open ports
+
 EXPOSE 8086
 
+#-----------------------------
+
+# Final command
+
 CMD /startSupervisord.sh
+
+#-----------------------------
