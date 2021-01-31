@@ -7,4 +7,6 @@ kubectl delete -f ~/MySimpleServices/srcs/phpmyadmin/phpmyadmin.yaml
 kubectl delete -f ~/MySimpleServices/srcs/influxdb/influxdb.yaml
 kubectl delete -f ~/MySimpleServices/srcs/grafana/grafana.yaml
 
-sleep 5
+sleep 10
+
+kubectl get pods

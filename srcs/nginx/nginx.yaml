@@ -1,52 +1,78 @@
+# Mandatory #
 apiVersion : apps/v1
+
+# What type? #
 kind       : Deployment
 metadata   :
-    name   : nginx-deployment
-    labels :
-        env   : ft_services
+    # Mandatory name #
+    name: nginx-deployment
+    # Additional information #
+    labels:
         app   : nginx
+        env   : ft_services
         owner : gdrive
 spec:
+    # How many replicas? #
     replicas : 1
+    # Whats pods to choose? #
     selector :
+        # Choose with labels: #
         matchLabels:
             project: main-nginx
+    # Creating pods #
     template:
         metadata:
             labels:
-                env     : ft_services
-                app     : nginx
                 project : main-nginx
+                app     : nginx
+                env     : ft_services
                 owner   : gdrive
         spec:
+            # Configs for containers #
             containers:
                 - name            : nginx
+                  # Image to be used #
                   image           : main-nginx:v1
+                  # Turn of DockerHub #
                   imagePullPolicy : Never
+                  # Open ports #
                   ports:
                       - containerPort : 80
                       - containerPort : 443
 ---
+# Mandatory #
 apiVersion: v1
+
+# What type? #
 kind: Service
 metadata:
+    # Mandatory name #
     name  : nginx-service
+    # Because everyone works on the same IP #
     annotations:
         metallb.universe.tf/allow-shared-ip: services
+    # Additional information #
     labels:
-        env: ft_services
         app: nginx
+        env: ft_services
         owner : gdrive
 spec:
+    # Include LoadBalancer #
     type    : LoadBalancer
+    # Whats pods to choose? #
     selector:
+        # Choose with labels: #
         project: main-nginx
     ports:
         - name       : http
           protocol   : TCP
+          # Redirect ports from #
           port       : 80
+          # Redirect port to #
           targetPort : 80
         - name       : https
           protocol   : TCP
+          # Redirect ports from #
           port       : 443
+          # Redirect port to #
           targetPort : 443

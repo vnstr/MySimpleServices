@@ -2,18 +2,13 @@ FROM alpine:3.12.3
 
 # Installing required packages.
 
-#RUN echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories
-
 RUN	apk update &&\
 	apk add\
 	vim\
 	supervisor\
 	nginx\
 	openssl &&\
-	mkdir -p /etc/vim &&\
 	mkdir -p /run/nginx
-
-COPY ./src/vimrc /etc/vim/
 
 #-----------------------------
 
@@ -41,14 +36,18 @@ RUN /setupNginxConf.sh && rm setupNginxConf.sh
 
 #------------------------------
 
-# Setup supervisord.conf for supervisord.
+# Installing telegraf.
 
-COPY ./src/supervisord.conf /etc/
+RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.17.0_linux_amd64.tar.gz
+RUN tar -xf telegraf-1.17.0_linux_amd64.tar.gz --strip-components=2 -C /
+RUN rm telegraf-1.17.0_linux_amd64.tar.gz
+COPY src/telegraf.conf /etc/telegraf/
 
 #------------------------------
 
-# Script for starting.
+# Setup supervisord.
 
+COPY ./src/supervisord.conf /etc/
 COPY ./src/startSupervisord.sh /
 
 #------------------------------
