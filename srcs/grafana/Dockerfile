@@ -34,6 +34,14 @@ COPY src/startSupervisord.sh /
 
 #-----------------------------
 
+# Open ports
+
 EXPOSE 3000
 
+#-----------------------------
+
+# Final command
+
 CMD /startSupervisord.sh
+
+#-----------------------------

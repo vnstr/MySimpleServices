@@ -19,9 +19,14 @@ RUN apk add\
 
 #-----------------------------
 
-#RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.17.0_linux_amd64.tar.gz
-#RUN tar -xf telegraf-1.17.0_linux_amd64.tar.gz --strip-components=2 -C /
-#RUN rm telegraf-1.17.0_linux_amd64.tar.gz
+# Installing telegraf.
+
+RUN wget https://dl.influxdata.com/telegraf/releases/telegraf-1.17.0_linux_amd64.tar.gz
+RUN tar -xf telegraf-1.17.0_linux_amd64.tar.gz --strip-components=2 -C /
+RUN rm telegraf-1.17.0_linux_amd64.tar.gz
+COPY src/telegraf.conf /etc/telegraf/
+
+#-----------------------------
 
 # Setup nginx.conf for nginx.
 
@@ -50,8 +55,14 @@ COPY src/startSupervisord.sh /
 
 #------------------------------
 
-#COPY telegraf.conf /etc/telegraf/
+# Open ports
 
 EXPOSE 5000
 
+#------------------------------
+
+# Final command
+
 CMD /startSupervisord.sh
+
+#------------------------------

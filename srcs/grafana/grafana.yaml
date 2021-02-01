@@ -1,37 +1,64 @@
+# Mandatory #
 apiVersion: apps/v1
+
+# What type? #
 kind: Deployment
 metadata:
   name: grafana-deployment
   labels:
-    app: grafana-deployment
+    app  : grafana
+    env  : ft_services
+    owner: gdrive
 spec:
+  # How many replicas? #
   replicas: 1
+  # Whats pods to choose? #
   selector:
+    # Choose with labels: #
     matchLabels:
-      app: grafana
+      project: grafana
+  # Creating pods #
   template:
     metadata:
       labels:
-        app: grafana
+        project: grafana
+    # Configs for containers #
     spec:
       containers:
       - name: grafana
+        # Image to be used #
         image: grafana:v1
+        # Turn of DockerHub #
         imagePullPolicy: Never
+        # Open ports #
         ports:
         - containerPort: 3000
 ---
+# Mandatory #
 apiVersion: v1
+
+# What type? #
 kind: Service
 metadata:
   name: grafana-service
+  # Because everyone works on the same IP #
   annotations:
     metallb.universe.tf/allow-shared-ip: services
+   # Additional information #
+  labels:
+      app  : grafana
+      env  : ft_services
+      owner: gdrive
 spec:
+  # Include LoadBalancer #
   type: LoadBalancer
+  # Whats pods to choose? #
   selector:
-    app: grafana
+    # Choose with labels: #
+    project: grafana
   ports:
-  - port: 3000
+  - name: http
+    # Redirect ports from #
+    port: 3000
+    # Redirect port to #
     targetPort: 3000
-    name: http

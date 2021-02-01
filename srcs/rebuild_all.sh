@@ -1,7 +1,6 @@
 #!/bin/sh
 
-	~/MySimpleServices/srcs/nginx/rebuildMainNginx.sh &&\
-	~/MySimpleServices/srcs/wordpress/rebuildWordpressNginx.sh &&\
-	~/MySimpleServices/srcs/mysql/rebuildMysql.sh
+	~/MySimpleServices/srcs/delete_all.sh &&\
+	~/MySimpleServices/srcs/build_all.sh
 
 

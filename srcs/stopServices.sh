@@ -6,6 +6,7 @@ kubectl delete -f ~/MySimpleServices/srcs/mysql/mysql.yaml
 kubectl delete -f ~/MySimpleServices/srcs/phpmyadmin/phpmyadmin.yaml
 kubectl delete -f ~/MySimpleServices/srcs/influxdb/influxdb.yaml
 kubectl delete -f ~/MySimpleServices/srcs/grafana/grafana.yaml
+kubectl delete -f ~/MySimpleServices/srcs/ftps/ftps.yaml
 
 sleep 30
 

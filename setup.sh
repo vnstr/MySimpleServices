@@ -19,22 +19,20 @@ eval $(minikube docker-env)
 
 # -----------------
 
-# Building focker-images
+# Building docker-images
 
-srcs/nginx/buildMainNginx.sh
-srcs/wordpress/buildWordpressNginx.sh
-
-# -----------------
-
-# Prepare metallb
-
-kubectl apply -f srcs/metallb.yaml
+srcs/build_all.sh
 
 # -----------------
 
 # Starting services
 
-kubectl apply -f srcs/nginx/nginx.yaml
-kubectl apply -f srcs/wordpress/wordpress.yaml
+srcs/startServices.sh
+
+# -----------------
+
+# Starting dashboard
+
+minikube dashboard
 
 # -----------------

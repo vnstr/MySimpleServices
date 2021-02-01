@@ -4,9 +4,9 @@ FROM alpine:3.12.3
 
 RUN apk update
 RUN apk add\
-	libc6-compat\
 	supervisor\
-	influxdb
+	influxdb\
+	libc6-compat
 
 #-----------------------------
 
@@ -26,9 +26,6 @@ COPY src/supervisord.conf /etc/
 COPY src/startSupervisord.sh /
 
 #-----------------------------
-
-#COPY start.sh .
-#RUN chmod +x start.sh
 
 # Open ports
 
