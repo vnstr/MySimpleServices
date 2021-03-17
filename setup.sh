@@ -2,37 +2,37 @@
 
 # Starting minikube
 
-minikube --driver=virtualbox --memory='3000' --disk-size 20000MB start
+	minikube --driver=virtualbox --memory='3000' --disk-size 20000MB start &&\
 
 # -----------------
 
 # Adding addons
 
-minikube addons enable dashboard
-minikube addons enable metallb
+	minikube addons enable dashboard &&\
+	minikube addons enable metallb &&\
 
 # -----------------
 
 # Prepare dokcer
 
-eval $(minikube docker-env)
+	eval $(minikube docker-env) &&\
 
 # -----------------
 
 # Building docker-images
 
-srcs/build_all.sh
+	srcs/build_all.sh &&\
 
 # -----------------
 
 # Starting services
 
-srcs/startServices.sh
+	srcs/startServices.sh &&\
 
 # -----------------
 
 # Starting dashboard
 
-minikube dashboard
+	minikube dashboard
 
 # -----------------

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-~/MySimpleServices/srcs/phpmyadmin/deleteImage.sh
-~/MySimpleServices/srcs/phpmyadmin/buildPhpMyAdmin.sh
+srcs/phpmyadmin/deleteImage.sh
+srcs/phpmyadmin/buildPhpMyAdmin.sh

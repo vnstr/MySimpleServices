@@ -1,4 +1,4 @@
 #!/bin/sh
 
-~/MySimpleServices/srcs/mysql/deleteImage.sh
-~/MySimpleServices/srcs/mysql/buildMysql.sh
+srcs/mysql/deleteImage.sh
+srcs/mysql/buildMysql.sh

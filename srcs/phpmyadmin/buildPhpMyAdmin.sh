@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t phpmyadmin:v1 ~/MySimpleServices/srcs/phpmyadmin/
+docker build -t phpmyadmin:v1 srcs/phpmyadmin/

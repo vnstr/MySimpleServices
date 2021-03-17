@@ -1,4 +1,4 @@
 #!/bin/sh
 
-~/MySimpleServices/srcs/wordpress/deleteImage.sh
-~/MySimpleServices/srcs/wordpress/buildWordpressNginx.sh
+srcs/wordpress/deleteImage.sh
+srcs/wordpress/buildWordpressNginx.sh

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-~/MySimpleServices/srcs/influxdb/deleteImage.sh
-~/MySimpleServices/srcs/influxdb/buildInfluxdb.sh
+srcs/influxdb/deleteImage.sh
+srcs/influxdb/buildInfluxdb.sh

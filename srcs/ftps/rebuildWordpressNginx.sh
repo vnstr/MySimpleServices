@@ -1,4 +1,4 @@
 #!/bin/sh
 
-~/MySimpleServices/srcs/ftps/deleteImage.sh
-~/MySimpleServices/srcs/ftps/buildFtps.sh
+srcs/ftps/deleteImage.sh
+srcs/ftps/buildFtps.sh

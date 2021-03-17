@@ -1,11 +1,11 @@
 #!/bin/sh
 
-	~/MySimpleServices/srcs/nginx/buildMainNginx.sh &&\
-	~/MySimpleServices/srcs/mysql/buildMysql.sh &&\
-	~/MySimpleServices/srcs/influxdb/buildInfluxdb.sh &&\
-	~/MySimpleServices/srcs/wordpress/buildWordpressNginx.sh &&\
-	~/MySimpleServices/srcs/phpmyadmin/buildPhpMyAdmin.sh &&\
-	~/MySimpleServices/srcs/grafana/buildGrafana.sh &&\
-	~/MySimpleServices/srcs/ftps/buildFtps.sh
+	srcs/nginx/buildMainNginx.sh &&\
+	srcs/mysql/buildMysql.sh &&\
+	srcs/influxdb/buildInfluxdb.sh &&\
+	srcs/wordpress/buildWordpressNginx.sh &&\
+	srcs/phpmyadmin/buildPhpMyAdmin.sh &&\
+	srcs/grafana/buildGrafana.sh &&\
+	srcs/ftps/buildFtps.sh
 
 

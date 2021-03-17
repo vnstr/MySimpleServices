@@ -1,3 +1,3 @@
 #!/bin/sh
 
-docker build -t ftps:v1 ~/MySimpleServices/srcs/ftps/
+docker build -t ftps:v1 srcs/ftps/
